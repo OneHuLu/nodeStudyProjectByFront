@@ -27,7 +27,8 @@ const ForkTsCheckerWebpackPlugin =
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
-
+// 自定义配置获取
+const customConfig = require('./config/config.json');
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -90,6 +91,7 @@ const hasJsxRuntime = (() => {
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
+
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
 
@@ -105,6 +107,12 @@ module.exports = function (webpackEnv) {
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
+  
+  let globalCustomVariables = {}
+  // 获取配置信息
+    Object.keys(customConfig[selectKey.env]).map((key) => {
+      globalCustomVariables[key] = JSON.stringify(customConfig[selectKey.env][key])
+    })
 
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
@@ -650,7 +658,7 @@ module.exports = function (webpackEnv) {
       // It is absolutely essential that NODE_ENV is set to production
       // during a production build.
       // Otherwise React will be compiled in the very slow development mode.
-      new webpack.DefinePlugin(env.stringified),
+      new webpack.DefinePlugin({...env.stringified,...globalCustomVariables}),
       // Experimental hot reloading for React .
       // https://github.com/facebook/react/tree/main/packages/react-refresh
       isEnvDevelopment &&

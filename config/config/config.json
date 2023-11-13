@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "baseUrl": "this is dev config",
+        "picUrl": "dev"
+    },
+    "prod": {
+        "baseUrl": "this is baseUrl",
+        "picUrl": "prod"
+    }
+}
