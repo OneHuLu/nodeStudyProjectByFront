@@ -1,10 +1,10 @@
 {
     "dev": {
-        "baseUrl": "this is dev config",
+        "baseUrl": "http://127.0.0.1:8000",
         "picUrl": "dev"
     },
     "prod": {
-        "baseUrl": "this is baseUrl",
+        "baseUrl": "http://127.0.0.1:8000",
         "picUrl": "prod"
     }
 }

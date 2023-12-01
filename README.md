@@ -23,3 +23,16 @@ webpack.config.js [ModuleScopePlugin]
 ```
 未进行处理，保持访问的资源只能在src下
 ```
+
+##### 待处理事项
+
+- 路由封装提取
+- fetch 封装完善
+
+##### 学习视频
+
+`https://www.bilibili.com/video/BV1FY4y1H7ka/?p=16&spm_id_from=pageDriver&vd_source=20e9098517f100e0db4cafff0a9737d1`
+
+##### 示例代码
+
+`https://github.com/jonasschmedtmann/complete-node-bootcamp`
