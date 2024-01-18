@@ -1,5 +1,4 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // router
 import { router } from "../routes/index";
@@ -7,11 +6,11 @@ import Header from "./header";
 import Footer from "./footer";
 
 export default function Index() {
+  useEffect(() => {
+    document.title = "Natours | All Tours";
+  }, []);
   return (
     <div>
-      <Helmet>
-        <title>Your Page Title</title>
-      </Helmet>
       {/* 导航栏 */}
       <Header />
       {/* 内容 */}

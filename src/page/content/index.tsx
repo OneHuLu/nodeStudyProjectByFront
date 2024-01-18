@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   labelPrevent,
   getAllTours,
@@ -8,18 +9,31 @@ import {
 } from "./content";
 
 export default function Content() {
-  const [tourList, setTourList] = useState([]);
+  const navigate = useNavigate();
+  // 事件派发方法
+  const dispatch = useDispatch();
+  // 获取存储仓库
+  const store = useSelector((state: any) => state.content);
+  const { tourList } = store.content;
 
+  // 数据请求
   useEffect(() => {
     getAllDate();
   }, []);
-  const navigate = useNavigate();
 
+  // 数据获取
   const getAllDate = async () => {
     const {
       data: { data },
     } = (await getAllTours()) || {};
-    setTourList(data);
+    // 事件派发，更新数据
+    dispatch({
+      type: "content/saveData",
+      payload: {
+        key: "tourList",
+        value: data,
+      },
+    });
   };
   return (
     <div>
