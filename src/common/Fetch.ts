@@ -5,7 +5,11 @@
  * @param params 请求参数
  * @param reqHead 请求头设置
  */
-const Fetch = async (url: string, params: { method: string }, headers?: {}) => {
+const Fetch = async (
+  url: string,
+  params: { method: string } = { method: "GET" },
+  headers?: {}
+) => {
   const initUrl = `${baseUrl}${url}`;
   const reqireHead = {
     mode: "no-cors", // no-cors, *cors, same-origin
