@@ -1,5 +1,5 @@
 import Content from "../page/content";
-import Tour from "../page/tour";
+import Tour from "../page/tour-details";
 const router = [
   // 首页内容
   {
