@@ -93,7 +93,12 @@ export default function Content() {
                   href="##"
                   onClick={(event) => {
                     labelPrevent(event);
-                    navigate("/tour");
+                    const toUrl = `/tour/${item.name.replace(/\s/g, "-")}`;
+                    navigate(toUrl, {
+                      state: {
+                        tourId: item.id,
+                      },
+                    });
                   }}
                   className="btn btn--green btn--small"
                 >
