@@ -1,6 +1,11 @@
 import { format } from "date-fns";
 import { Fetch } from "../../common/Fetch";
 
+/**
+ * 阻止原生事件
+ * @param event
+ * @returns
+ */
 const labelPrevent = (event: any) => event.preventDefault();
 
 /**
