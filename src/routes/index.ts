@@ -8,7 +8,7 @@ const router = [
   },
   // /tour 旅游详情页面
   {
-    path: "/tour",
+    path: "/tour/:name",
     element: Tour,
   },
 ];
