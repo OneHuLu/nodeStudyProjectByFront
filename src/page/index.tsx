@@ -10,21 +10,19 @@ export default function Index() {
     document.title = "Natours | All Tours";
   }, []);
   return (
-    <div>
+    <Router>
       {/* 导航栏 */}
       <Header />
       {/* 内容 */}
-      <Router>
-        <Routes>
-          {router.map((item, index) => {
-            return (
-              <Route key={index} path={item.path} element={<item.element />} />
-            );
-          })}
-        </Routes>
-      </Router>
+      <Routes>
+        {router.map((item, index) => {
+          return (
+            <Route key={index} path={item.path} element={<item.element />} />
+          );
+        })}
+      </Routes>
       {/* 页脚 */}
       <Footer />
-    </div>
+    </Router>
   );
 }
