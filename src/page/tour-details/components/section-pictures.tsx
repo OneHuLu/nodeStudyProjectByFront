@@ -7,7 +7,7 @@ export default function SectionPictures(props: any) {
       {images?.map((item: string, index: number) => (
         <div className="picture-box" key={index}>
           <img
-            className="picture-box__img picture-box__img--1"
+            className={`picture-box__img picture-box__img--${index + 1}`}
             src={`/img/tours/${item}`}
             alt={`${name} ${index + 1}`}
           />
