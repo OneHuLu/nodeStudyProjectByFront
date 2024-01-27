@@ -1,10 +1,16 @@
 {
     "dev": {
         "baseUrl": "http://127.0.0.1:8000/api/v1",
-        "picUrl": "dev"
+        "picUrl": "dev",
+        "mapName": "",
+        "accessTokenMap": "",
+        "mapStyle": ""
     },
     "prod": {
         "baseUrl": "http://127.0.0.1:8000/api/v1",
-        "picUrl": "prod"
+        "picUrl": "",
+        "mapName": "",
+        "accessTokenMap": "",
+        "mapStyle": ""
     }
 }
