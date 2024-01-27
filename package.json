@@ -39,6 +39,7 @@
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
+    "mapbox-gl": "^3.1.0",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -151,6 +152,7 @@
     ]
   },
   "devDependencies": {
+    "@types/mapbox-gl": "^2.7.19",
     "@types/redux-logger": "^3.0.12",
     "less": "^4.2.0",
     "less-loader": "^11.1.3"

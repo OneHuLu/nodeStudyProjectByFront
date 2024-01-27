@@ -44,6 +44,7 @@ export default function Tour() {
     guides,
     description,
     reviews,
+    locations,
   } = tourDetails;
   // 数据组装
 
@@ -67,7 +68,7 @@ export default function Tour() {
 
       <SectionPictures images={images} name={name} />
 
-      <SectionMap />
+      <SectionMap locations={locations} />
 
       <SectionReviews reviews={reviews} />
 
