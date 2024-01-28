@@ -7,44 +7,43 @@
  */
 const Fetch = async (
   url: string,
-  params: { method: string } = { method: "GET" },
-  headers?: {}
+  params: { method: string; body: {} } = { method: "GET", body: {} },
+  header?: {}
 ) => {
   const initUrl = `${baseUrl}${url}`;
-  const reqireHead = {
-    mode: "no-cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    // credentials: "same-origin", // include, *same-origin, omit
+
+  const requireHead = {
+    mode: "cors",
     headers: {
       "Content-Type": "application/json",
     },
-    redirect: "follow", // manual, *follow, error
-    // referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    ...header,
   };
 
+  const method = params.method || "GET";
   //   区分Get以及其他请求
   const data =
-    params.method === "GET"
-      ? await getFetch(initUrl, reqireHead)
-      : await postFetch(initUrl, params, reqireHead);
-  //   console.log(data,"<<<<<<<<data");
+    method === "GET"
+      ? await getFetch(initUrl, requireHead)
+      : await postFetch(initUrl, params, requireHead);
   return data;
 };
 
-// 需要传入 body 请求参数的
-const postFetch = (
-  initUrl: string,
-  params: {
-    method: string;
-  },
-  reqireHead: {}
-) => {
-  //数据请求
-  const data = fetch(initUrl, {
+/**
+ * Post
+ * @param initUrl 请求地址
+ * @param params 请求方法以及请求体
+ * @param requireHead 需要的请求头
+ * @returns
+ */
+const postFetch = (initUrl: string, params: any, requireHead: {}) => {
+  const bodys = {
     method: params.method,
-    body: JSON.stringify(params),
-    ...reqireHead,
-  })
+    body: JSON.stringify(params.body),
+    ...requireHead,
+  };
+  //数据请求
+  const data = fetch(initUrl, bodys)
     .then((response) => response.json())
     .then((data) => {
       return data;
@@ -56,7 +55,7 @@ const postFetch = (
 };
 
 // get 请求方法
-const getFetch = (initUrl: string, reqireHead: {}) => {
+const getFetch = (initUrl: string, requireHead: {}) => {
   //数据请求
   const data = fetch(initUrl)
     .then((response) => {
