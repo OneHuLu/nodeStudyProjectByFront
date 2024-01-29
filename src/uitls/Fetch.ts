@@ -10,12 +10,20 @@ const Fetch = async (
   params: { method: string; body: {} } = { method: "GET", body: {} },
   header?: {}
 ) => {
+  // 地址拼接
   const initUrl = `${baseUrl}${url}`;
-
+  // 设置凭证
+  let token = null;
+  if (localStorage.getItem("token")) {
+    token = JSON.parse(localStorage.getItem("token") || "");
+  }
+  // 请求头
   const requireHead = {
     mode: "cors",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     ...header,
   };
@@ -57,7 +65,10 @@ const postFetch = (initUrl: string, params: any, requireHead: {}) => {
 // get 请求方法
 const getFetch = (initUrl: string, requireHead: {}) => {
   //数据请求
-  const data = fetch(initUrl)
+  const data = fetch(initUrl, {
+    method: "GET",
+    ...requireHead,
+  })
     .then((response) => {
       const getData = response.json();
       return getData;

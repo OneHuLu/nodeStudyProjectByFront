@@ -1,3 +1,5 @@
+import { Fetch } from "./Fetch";
+
 /**
  * 是否登录
  * @returns
@@ -13,4 +15,18 @@ const isLogin = () => {
     return false;
   }
 };
-export { isLogin };
+
+/**
+ * 退出登录
+ */
+const logout = async () => {
+  const { status } = await Fetch("/users/logout");
+  if (status === 200) {
+    localStorage.clear();
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export { isLogin, logout };

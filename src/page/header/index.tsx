@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { isLogin } from "../../uitls/common";
+import { isLogin, logout } from "../../uitls/common";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -41,10 +41,27 @@ export default function Header() {
       <nav className="nav nav--user">
         {isLogin() ? (
           <>
-            <a href="###" className="nav__el">
-              My bookings
+            <a
+              href="###"
+              className="nav__el"
+              onClick={async (event) => {
+                event.preventDefault();
+                const logoutStatus = await logout();
+                if (logoutStatus) {
+                  navigate("/");
+                }
+              }}
+            >
+              {/* My bookings */}
+              LOG OUT
             </a>
-            <a href="###" className="nav__el">
+            <a
+              href="##"
+              className="nav__el"
+              onClick={(event) => {
+                event.preventDefault();
+              }}
+            >
               <img
                 src={`/img/users/${photo}`}
                 alt="UserPhoto"
