@@ -1,3 +1,4 @@
+import { message } from "antd";
 import { Fetch } from "./Fetch";
 
 /**
@@ -23,8 +24,10 @@ const logout = async () => {
   const { status } = await Fetch("/users/logout");
   if (status === 200) {
     localStorage.clear();
+    message.info("logged out successfully!");
     return true;
   } else {
+    message.error("logged out failed! Please try again!");
     return false;
   }
 };

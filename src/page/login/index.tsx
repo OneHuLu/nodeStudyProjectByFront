@@ -44,7 +44,7 @@ export default function Login() {
               onClick={async (event) => {
                 event.preventDefault();
                 const tureOrFalse = await login(password, email);
-                tureOrFalse ? navigate("/") : alert("login failed");
+                tureOrFalse && navigate("/");
               }}
             >
               Login

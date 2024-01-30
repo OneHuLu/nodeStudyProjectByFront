@@ -94,7 +94,7 @@ const UseMapBoxHooks = (props: any) => {
   const { locations } = props;
   useEffect(() => {
     const map = createMapBox();
-    mapLoad(map, locations);
+    locations && mapLoad(map, locations);
     // 在组件销毁时清理地图
     return () => {
       map.remove();

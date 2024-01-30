@@ -16,9 +16,7 @@ export default function Content() {
   const navigate = useNavigate();
 
   const getAllDate = async () => {
-    const {
-      data: { data },
-    } = (await getAllTours()) || {};
+    const { data } = (await getAllTours()) || {};
     setTourList(data);
   };
   return (

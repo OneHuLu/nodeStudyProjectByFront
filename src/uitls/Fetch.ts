@@ -18,7 +18,6 @@ const Fetch = async (
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      // authorization: `Bearer ${token}`,
     },
     ...header,
   };

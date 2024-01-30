@@ -1,7 +1,8 @@
 import { Fetch } from "../../uitls/Fetch";
+import { message as Message } from "antd";
 
 const login = async (password: string, email: string) => {
-  const { data, status, token } = await Fetch("/users/login", {
+  const { data, status, token, message } = await Fetch("/users/login", {
     method: "POST",
     body: {
       email,
@@ -12,8 +13,10 @@ const login = async (password: string, email: string) => {
     // 保存token 以及用户数据
     localStorage.setItem("user", JSON.stringify(data));
     localStorage.setItem("token", JSON.stringify(token));
+    Message.info("Login successful");
     return true;
   } else {
+    Message.error(message);
     return false;
   }
 };
