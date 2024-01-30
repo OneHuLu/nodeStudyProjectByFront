@@ -1,5 +1,5 @@
 import React from "react";
-import UseMapBoxHooks from "../../../uitls/map/mapBox";
+import UseMapBoxHooks from "@utils/map/mapBox";
 
 export default function SectionMap(props: any) {
   const { locations } = props;

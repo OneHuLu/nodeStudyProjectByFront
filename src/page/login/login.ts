@@ -1,4 +1,4 @@
-import { Fetch } from "../../uitls/Fetch";
+import { Fetch } from "@utils/Fetch";
 import { message as Message } from "antd";
 
 const login = async (password: string, email: string) => {

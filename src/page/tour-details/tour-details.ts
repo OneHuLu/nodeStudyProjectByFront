@@ -1,4 +1,4 @@
-import { Fetch } from "../../uitls/Fetch";
+import { Fetch } from "@utils/Fetch";
 /**
  * 旅游详情页数据获取
  * @param id

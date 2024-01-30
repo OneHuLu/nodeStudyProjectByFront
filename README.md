@@ -27,8 +27,9 @@ webpack.config.js [ModuleScopePlugin]
 ##### 待处理事项
 
 - 路由封装提取 finished
-- fetch 封装完善
+- fetch 封装完善 finished
 - 页面跳转后滚动条位置被记忆问题
+- 工具目录路径别名配置 finished
 
 ##### 学习视频
 
@@ -38,10 +39,10 @@ webpack.config.js [ModuleScopePlugin]
 
 `https://github.com/jonasschmedtmann/complete-node-bootcamp`
 
-##### git提交规范
+##### git 提交规范
 
 - feat: 新功能
-- fix: 修复bug
+- fix: 修复 bug
 - chore: 构建过程或辅助工具的变动
 - docs: 文档的变动
 - style: 代码风格的变动（不影响代码的运行）

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { isLogin, logout } from "../../uitls/common";
+import { isLogin, logout } from "@utils/common";
 
 export default function Header() {
   const navigate = useNavigate();

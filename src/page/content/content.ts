@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Fetch } from "../../uitls/Fetch";
+import { Fetch } from "@utils/Fetch";
 
 /**
  * 阻止原生事件
