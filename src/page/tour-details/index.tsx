@@ -13,11 +13,8 @@ import SectionCta from "./components/section-cta";
 export default function Tour() {
   // 获取url传参
   const location = useLocation();
-  const {
-    state: { tourId },
-    pathname,
-  } = location || {};
-  const tourDetailName = pathname.split("/")[2].replace(/-/g, " ");
+  const { state, pathname } = (location?.state && location) || {};
+  const tourDetailName = pathname?.split("/")[2]?.replace(/-/g, " ");
   // dispatch
   const dispatch = useDispatch();
 
@@ -27,8 +24,8 @@ export default function Tour() {
 
   // 获取数据
   useEffect(() => {
-    getTourDetails(tourId, dispatch);
-  }, [dispatch, tourId]);
+    getTourDetails(state?.tourId, dispatch);
+  }, [dispatch, state?.tourId]);
 
   // state
   const { tourDetails } = useSelector((state: any) => state.tourDetails);
