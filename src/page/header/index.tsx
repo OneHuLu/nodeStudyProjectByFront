@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { isLogin, logout } from "@utils/common";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const navigate = useNavigate();
-  const user = localStorage.getItem("user") || "";
-  const { photo, name } = (user && JSON.parse(user)) || {};
+  const { userInfo } = useSelector((state: any) => state.myAccount);
+  const [user, setUser]: any = useState({});
+
+  useEffect(() => {
+    const getUser = localStorage.getItem("user") || "";
+    const user = (getUser && JSON.parse(getUser)) || userInfo;
+    setUser(user);
+  }, [userInfo]);
 
   return (
     <header className="header">
@@ -60,14 +67,15 @@ export default function Header() {
               className="nav__el"
               onClick={(event) => {
                 event.preventDefault();
+                navigate("/mine");
               }}
             >
               <img
-                src={`/img/users/${photo}`}
+                src={`/img/users/${user?.photo}`}
                 alt="UserPhoto"
                 className="nav__user-img"
               />
-              <span>{name}</span>
+              <span>{user?.name}</span>
             </a>
           </>
         ) : (

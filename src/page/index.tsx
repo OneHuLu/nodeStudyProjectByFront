@@ -6,9 +6,11 @@ import Header from "./header";
 import Footer from "./footer";
 
 export default function Index() {
+  // 设置标题
   useEffect(() => {
     document.title = "Natours | All Tours";
   }, []);
+
   return (
     <Router>
       {/* 导航栏 */}

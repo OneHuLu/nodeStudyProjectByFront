@@ -2,6 +2,7 @@ import Content from "../page/content";
 import Tour from "../page/tour-details";
 import Login from "../page/login";
 import NotFound from "@utils/error/NotFound";
+import MyAaccount from "page/my-account";
 
 const router = [
   // 首页内容
@@ -18,6 +19,10 @@ const router = [
   {
     path: "/login",
     element: Login,
+  },
+  {
+    path: "/mine",
+    element: MyAaccount,
   },
   // * 404页面
   {
