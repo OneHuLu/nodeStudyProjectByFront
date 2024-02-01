@@ -7,13 +7,15 @@ export default function Header() {
   const navigate = useNavigate();
   const { userInfo } = useSelector((state: any) => state.myAccount);
   const [user, setUser]: any = useState({});
+  const getUser = localStorage.getItem("user") || "";
 
   useEffect(() => {
-    const getUser = localStorage.getItem("user") || "";
     const user = (getUser && JSON.parse(getUser)) || userInfo;
     setUser(user);
-  }, [userInfo]);
-
+    return () => {
+      setUser({});
+    };
+  }, [userInfo, getUser]);
   return (
     <header className="header">
       <nav className="nav nav--tours">

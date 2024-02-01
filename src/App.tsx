@@ -4,7 +4,7 @@ import "./App.css";
 import Index from "./page/index";
 // Redux
 import { Provider } from "react-redux";
-import store from "./store/store";
+import store from "./redux-root/store/store";
 
 function App() {
   return (

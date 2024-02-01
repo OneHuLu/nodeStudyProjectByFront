@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 // content Componment
-import contentReducer from "../page/content/reducers/index-reducer";
-import tourDetailsReducer from "../page/tour-details/reducers/index-reducer";
-import accountDetailsReducer from "../page/my-account/reducers/index-reducer";
+import contentReducer from "../../page/content/reducers/index-reducer";
+import tourDetailsReducer from "../../page/tour-details/reducers/index-reducer";
+import accountDetailsReducer from "../../page/my-account/reducers/index-reducer";
 
 const rootReducer = combineReducers({
   content: contentReducer,

@@ -74,6 +74,13 @@ const updateUserInfo = async (
   }
 };
 
+/**
+ * 修改密码，用户自己
+ * @param currentPassword
+ * @param newPassword
+ * @param confirmPassword
+ * @returns
+ */
 const updatePassword = async (
   currentPassword: string,
   newPassword: string,
