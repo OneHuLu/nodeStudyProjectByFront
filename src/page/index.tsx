@@ -1,18 +1,28 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 // router
 import { router } from "../routes/index";
 import Header from "./header";
 import Footer from "./footer";
 
 export default function Index() {
+  const location = useLocation();
+
   // 设置标题
   useEffect(() => {
     document.title = "Natours | All Tours";
   }, []);
 
+  useEffect(() => {
+    // 在页面加载时将滚动条置顶
+    window.scrollTo(0, 0);
+    return () => {
+      window.scrollTo(0, 0);
+    };
+  }, [location.pathname]);
+
   return (
-    <Router>
+    <>
       {/* 导航栏 */}
       <Header />
       {/* 内容 */}
@@ -25,6 +35,6 @@ export default function Index() {
       </Routes>
       {/* 页脚 */}
       <Footer />
-    </Router>
+    </>
   );
 }

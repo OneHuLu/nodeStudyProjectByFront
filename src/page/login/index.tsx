@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { login } from "./login";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  // 设置标题
+  useEffect(() => {
+    document.title = "Natours | Log into your account";
+  }, []);
 
   return (
     <main className="main">

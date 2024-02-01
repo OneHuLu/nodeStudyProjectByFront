@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 // routes
 import Index from "./page/index";
@@ -10,7 +11,9 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <Index />
+        <Router>
+          <Index />
+        </Router>
       </Provider>
     </div>
   );
