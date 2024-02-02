@@ -91,7 +91,15 @@ export default function Header() {
             >
               Log in
             </button>
-            <button className="nav__el nav__el--cta">Sign up</button>
+            <button
+              className="nav__el nav__el--cta"
+              onClick={(event) => {
+                event.preventDefault();
+                navigate("/signup");
+              }}
+            >
+              Sign up
+            </button>
           </>
         )}
       </nav>

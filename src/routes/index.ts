@@ -1,8 +1,9 @@
-import Content from "../page/content";
-import Tour from "../page/tour-details";
-import Login from "../page/login";
+import Content from "page/content";
+import Tour from "page/tour-details";
+import Login from "page/login";
 import NotFound from "@utils/error/NotFound";
 import MyAaccount from "page/my-account";
+import SignUp from "page/sign-up";
 
 const router = [
   // 首页内容
@@ -19,6 +20,11 @@ const router = [
   {
     path: "/login",
     element: Login,
+  },
+  // /signup 注册页面页面
+  {
+    path: "/signup",
+    element: SignUp,
   },
   {
     path: "/mine",
