@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { isLogin, logout } from "@utils/common";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { handleKeyDown } from "./header";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+
   const { userInfo } = useSelector((state: any) => state.myAccount);
   const [user, setUser]: any = useState({});
+  const [search, setSearch]: any = useState("");
+
   const getUser = localStorage.getItem("user") || "";
 
   useEffect(() => {
@@ -29,9 +36,12 @@ export default function Header() {
         >
           All tours
         </a>
-        {isLogin() && (
+        {isLogin() && location.pathname === "/" && (
           <form className="nav__search">
-            <button className="nav__search-btn">
+            <button
+              className="nav__search-btn"
+              onClick={(e) => e.preventDefault()}
+            >
               <svg>
                 <use xlinkHref="img/icons.svg#icon-search"></use>
               </svg>
@@ -40,6 +50,8 @@ export default function Header() {
               type="text"
               placeholder="Search tours"
               className="nav__search-input"
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => handleKeyDown(e, search, dispatch)}
             />
           </form>
         )}

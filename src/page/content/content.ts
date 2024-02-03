@@ -12,9 +12,17 @@ const labelPrevent = (event: any) => event.preventDefault();
  * 获取 tour 列表数据
  * @returns
  */
-const getAllTours = async () => {
-  const tours = await Fetch("/tours");
-  return tours;
+const getAllTours = async (dispatch: Function) => {
+  const { status, data } = (await Fetch("/tours")) || {};
+  if (status === 200) {
+    dispatch({
+      type: "content/saveData",
+      payload: {
+        key: "tourList",
+        value: data,
+      },
+    });
+  }
 };
 
 /**

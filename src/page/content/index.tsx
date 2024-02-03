@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getAllTours } from "./content";
 import ContentSkeleton from "page/skeleton/content-skeleton";
 import Tour from "./component/tour";
+import { useDispatch } from "react-redux";
 
 export default function Content() {
-  const [tourList, setTourList] = useState([]);
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -14,9 +16,8 @@ export default function Content() {
   }, []);
 
   const getAllDate = async () => {
-    const { data } = (await getAllTours()) || {};
-    setTourList(data);
+    await getAllTours(dispatch);
     setLoading(true);
   };
-  return <>{loading ? <Tour tourList={tourList} /> : <ContentSkeleton />}</>;
+  return <>{loading ? <Tour /> : <ContentSkeleton />}</>;
 }

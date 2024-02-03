@@ -1,5 +1,3 @@
-// // counterSlice.js
-// import { combineReducers } from "redux";
 // Reducers Create
 import { createSlice } from "@reduxjs/toolkit";
 // State
@@ -12,11 +10,5 @@ const counterSlice = createSlice({
   initialState: contentState,
   reducers: contentAction,
 });
-// // Reducers 合并
-// const rootReducer = combineReducers({
-//   content: counterSlice.reducer,
-//   // 可以添加其他的Reducer
-// });
-
 export const { saveData } = counterSlice.actions;
 export default counterSlice.reducer;
