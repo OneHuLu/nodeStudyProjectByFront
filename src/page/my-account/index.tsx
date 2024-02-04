@@ -4,6 +4,7 @@ import {
   sideNav,
   updatePassword,
   updateUserInfo,
+  uploadUserPhoto,
 } from "./my-account";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +31,12 @@ export default function MyAaccount() {
   const [newPassword, setNewPassword] = useState("");
   // Confirm password
   const [confirmPassword, setConfirmPassword] = useState("");
+  //  user Photo
+  const [file, setFile]: any = useState(null);
 
+  const handleFileChange = (event: any) => {
+    setFile(event.target.files[0]);
+  };
   return (
     <div className="user-view">
       <nav className="user-view__menu">
@@ -129,9 +135,21 @@ export default function MyAaccount() {
                 src={`/img/users/${user?.photo}`}
                 alt="Userphoto"
               />
-              <a className="btn-text" href="##" type="file">
-                Choose new photo
-              </a>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}
+              >
+                <input
+                  type="file"
+                  className="btn-text"
+                  onChange={handleFileChange}
+                  placeholder="Choose new photo"
+                />
+                <div onClick={async () => uploadUserPhoto(file)}>Upload</div>
+              </div>
             </div>
 
             <div className="form__group right">

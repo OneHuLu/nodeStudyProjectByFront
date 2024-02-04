@@ -1,6 +1,7 @@
+import { message as Message } from "antd";
 import { Fetch } from "@utils/Fetch";
 import { logout } from "@utils/common";
-import { message as Message } from "antd";
+import { handleUpload, userPhotoPathSet } from "@utils/github-octokit";
 
 const sideNav = [
   {
@@ -103,4 +104,22 @@ const updatePassword = async (
   }
 };
 
-export { sideNav, adminNav, updateUserInfo, updatePassword };
+const uploadUserPhoto = async (file: any) => {
+  const path = userPhotoPathSet(file);
+  const { url } = (await handleUpload(file, path)) || {};
+  // 发起头像存储的请求
+  const { status } =
+    (await Fetch("/users/updateUserPhoto", {
+      method: "POST",
+      body: {
+        photo: url,
+      },
+    })) || {};
+  if (status === 200) {
+    Message.success("Photo updated successfully");
+  } else {
+    Message.error("update photo failed");
+  }
+};
+
+export { sideNav, adminNav, updateUserInfo, updatePassword, uploadUserPhoto };
