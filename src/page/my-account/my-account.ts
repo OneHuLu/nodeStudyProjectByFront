@@ -110,6 +110,11 @@ const updatePassword = async (
   }
 };
 
+/**
+ * 上传文件
+ * @param file
+ * @param dispatch
+ */
 const uploadUserPhoto = async (file: any, dispatch: Function) => {
   const path = userPhotoPathSet(file);
   const { data } = (await handleUpload(file, path)) || {};
