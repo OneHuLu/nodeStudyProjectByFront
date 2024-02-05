@@ -30,6 +30,7 @@ webpack.config.js [ModuleScopePlugin]
 - fetch 封装完善 finished
 - 页面跳转后滚动条位置被记忆问题
 - 工具目录路径别名配置 finished
+- 头像上传展示优化问题
 
 ##### 学习视频
 

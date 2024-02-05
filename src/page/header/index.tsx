@@ -73,7 +73,6 @@ export default function Header() {
                 }
               }}
             >
-              {/* My bookings */}
               LOG OUT
             </a>
             <a
@@ -85,7 +84,7 @@ export default function Header() {
               }}
             >
               <img
-                src={`/img/users/${user?.photo}`}
+                src={user?.photo}
                 alt="UserPhoto"
                 className="nav__user-img"
               />

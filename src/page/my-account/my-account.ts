@@ -49,24 +49,30 @@ const adminNav = [
 const updateUserInfo = async (
   userName: string,
   userEmail: string,
+  userPhoto: string,
   dispatch: Function
 ) => {
+  let params: any = {
+    name: userName,
+    email: userEmail,
+  };
+  // 有头像就使用
+  if (userPhoto) {
+    params.photo = userPhoto;
+  }
   const { data, status, message } = await Fetch("/users/updateMe", {
     method: "PATCH",
-    body: {
-      name: userName,
-      email: userEmail,
-    },
+    body: params,
   });
   if (status === "success") {
     // 替换本地数据
     localStorage.setItem("user", JSON.stringify(data));
-    // 数据存储
+    // 数据存储清空
     dispatch({
       type: "my-account/saveData",
       payload: {
-        key: "userInfo",
-        value: data,
+        key: "userPhoto",
+        value: null,
       },
     });
     Message.info("Successfully saved!");
@@ -104,22 +110,17 @@ const updatePassword = async (
   }
 };
 
-const uploadUserPhoto = async (file: any) => {
+const uploadUserPhoto = async (file: any, dispatch: Function) => {
   const path = userPhotoPathSet(file);
-  const { url } = (await handleUpload(file, path)) || {};
-  // 发起头像存储的请求
-  const { status } =
-    (await Fetch("/users/updateUserPhoto", {
-      method: "POST",
-      body: {
-        photo: url,
-      },
-    })) || {};
-  if (status === 200) {
-    Message.success("Photo updated successfully");
-  } else {
-    Message.error("update photo failed");
-  }
+  const { data } = (await handleUpload(file, path)) || {};
+  // 数据存储
+  dispatch({
+    type: "my-account/saveData",
+    payload: {
+      key: "userPhoto",
+      value: data?.content?.download_url,
+    },
+  });
 };
 
 export { sideNav, adminNav, updateUserInfo, updatePassword, uploadUserPhoto };

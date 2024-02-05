@@ -1,5 +1,5 @@
 const accountDetailsState = {
-  userInfo: {},
+  userPhoto: null,
 };
 
 export default accountDetailsState;

@@ -6,36 +6,33 @@ import {
   updateUserInfo,
   uploadUserPhoto,
 } from "./my-account";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function MyAaccount() {
   const dispatch = useDispatch();
   const navigator = useNavigate();
+  const { userPhoto } = useSelector((state: any) => state.myAccount);
+
   // 获取user信息
   const getUserData = localStorage.getItem("user") || "";
   if (!getUserData) {
   }
   const user = (getUserData && JSON.parse(getUserData)) || {};
-  // hover sign
-  const [sideNavNum, setSideNavNum] = useState(0);
-  // selectsign
-  const [selectSideNavNum, setSelectSideNavNum] = useState(0);
-  //userName
-  const [userName, setUserName] = useState(user?.name);
-  //userEmail
-  const [userEmail, setuserEmail] = useState(user?.email);
-  // Current password
-  const [currentPassword, setCurrentPassword] = useState("");
-  // New password
-  const [newPassword, setNewPassword] = useState("");
-  // Confirm password
-  const [confirmPassword, setConfirmPassword] = useState("");
-  //  user Photo
-  const [file, setFile]: any = useState(null);
 
+  // useState
+  const [sideNavNum, setSideNavNum] = useState(0); // hover sign
+  const [selectSideNavNum, setSelectSideNavNum] = useState(0); // selectsign
+  const [userName, setUserName] = useState(user?.name); //userName
+  const [userEmail, setUserEmail] = useState(user?.email); //userEmail
+  const [currentPassword, setCurrentPassword] = useState(""); // Current password
+  const [newPassword, setNewPassword] = useState(""); // New password
+  const [confirmPassword, setConfirmPassword] = useState(""); // Confirm password
+
+  // Handle Function
   const handleFileChange = (event: any) => {
-    setFile(event.target.files[0]);
+    const file = event.target.files[0];
+    uploadUserPhoto(file, dispatch);
   };
   return (
     <div className="user-view">
@@ -124,7 +121,7 @@ export default function MyAaccount() {
                 className="form__input"
                 type="email"
                 value={userEmail}
-                onChange={(e) => setuserEmail(e.target.value)}
+                onChange={(e) => setUserEmail(e.target.value)}
                 required
               />
             </div>
@@ -132,7 +129,7 @@ export default function MyAaccount() {
             <div className="form__group form__photo-upload">
               <img
                 className="form__user-photo"
-                src={`/img/users/${user?.photo}`}
+                src={userPhoto || user?.photo}
                 alt="Userphoto"
               />
 
@@ -148,7 +145,6 @@ export default function MyAaccount() {
                   onChange={handleFileChange}
                   placeholder="Choose new photo"
                 />
-                <div onClick={async () => uploadUserPhoto(file)}>Upload</div>
               </div>
             </div>
 
@@ -157,7 +153,12 @@ export default function MyAaccount() {
                 className="btn btn--small btn--green"
                 onClick={async (e) => {
                   e.preventDefault();
-                  await updateUserInfo(userName, userEmail, dispatch);
+                  await updateUserInfo(
+                    userName,
+                    userEmail,
+                    userPhoto,
+                    dispatch
+                  );
                 }}
               >
                 Save settings
