@@ -10,12 +10,16 @@ const getUserId = () => {
   const user = JSON.parse(localStorage.getItem("user") || "");
   return user._id;
 };
-
+/**
+ * 用户头像上传路径
+ * @param file 
+ * @returns 
+ */
 const userPhotoPathSet = (file: any) => {
   const uniqueId = uuidv4();
   const id = getUserId();
   const imageSuffix = file?.name?.split(".")[1];
-  const uploadPath = `image/${id}/${uniqueId}.${imageSuffix}`;
+  const uploadPath = `natours/user/${id}/${uniqueId}.${imageSuffix}`;
   return uploadPath;
 };
 

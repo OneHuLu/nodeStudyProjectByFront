@@ -84,7 +84,7 @@ export default function Header() {
               }}
             >
               <img
-                src={user?.photo}
+                src={user?.photo || "img/users/default.jpg"}
                 alt="UserPhoto"
                 className="nav__user-img"
               />

@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { isLogin } from "@utils/common";
 
 export default function SectionCta(props: any) {
+  const navigate = useNavigate();
   const { images, duration } = props;
   return (
     <section className="section-cta">
@@ -25,14 +28,22 @@ export default function SectionCta(props: any) {
             {duration} days. 1 adventure. Infinite memories. Make it yours
             today!
           </p>
-          {/* TODO: 这个需要做一个登录前后的区分 */}
-          <button className="btn btn--green span-all-rows">
-            Book tour now!
-          </button>
-          {/* 跳转到登录页面 */}
-          {/* <button className="btn--green span-all-rows">
-            Log in to book tour
-          </button> */}
+          {/* TODO: 预定 */}
+          {isLogin() ? (
+            <button className="btn btn--green span-all-rows">
+              Book tour now!
+            </button>
+          ) : (
+            <button
+              className="btn btn--green span-all-rows"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/login");
+              }}
+            >
+              Log in to book tour
+            </button>
+          )}
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ export default function SectionReviews(props: any) {
           <div className="reviews__card" key={index}>
             <div className="reviews__avatar">
               <img
-                src={`/img/users/${item.user[0].photo}`}
+                src={item.user[0].photo || `/img/users/default.jpg`}
                 alt={item.user[0].name}
                 className="reviews__avatar-img"
               />
