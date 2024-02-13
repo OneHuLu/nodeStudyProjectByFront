@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { Upload, UploadFile } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import {
   adminNav,
   sideNav,
@@ -6,8 +11,8 @@ import {
   updateUserInfo,
   uploadUserPhoto,
 } from "./my-account";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
+import "./index.less";
 
 export default function MyAaccount() {
   const dispatch = useDispatch();
@@ -16,8 +21,6 @@ export default function MyAaccount() {
 
   // 获取user信息
   const getUserData = localStorage.getItem("user") || "";
-  if (!getUserData) {
-  }
   const user = (getUserData && JSON.parse(getUserData)) || {};
 
   // useState
@@ -28,12 +31,29 @@ export default function MyAaccount() {
   const [currentPassword, setCurrentPassword] = useState(""); // Current password
   const [newPassword, setNewPassword] = useState(""); // New password
   const [confirmPassword, setConfirmPassword] = useState(""); // Confirm password
-
+  const [fileList, setFileList] = useState<UploadFile[]>([
+    {
+      uid: "-1",
+      name: "image.png",
+      status: "done",
+      url: user?.photo,
+    },
+  ]);
   // Handle Function
   const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
-    uploadUserPhoto(file, dispatch);
+    setFileList(event?.fileList);
+    const file = event?.fileList[0];
+    if (event?.file?.status !== "uploading") {
+      uploadUserPhoto(file?.originFileObj, dispatch);
+    }
   };
+  // 阻止Upload的action上传
+  const beforeUpload = () => false;
+
+  useEffect(() => {
+    return () => {};
+  });
+
   return (
     <div className="user-view">
       <nav className="user-view__menu">
@@ -126,26 +146,23 @@ export default function MyAaccount() {
               />
             </div>
 
-            <div className="form__group form__photo-upload">
-              <img
-                className="form__user-photo"
-                src={userPhoto || user?.photo}
-                alt="Userphoto"
-              />
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
+            <div className="form__group">
+              <Upload
+                listType="picture-circle"
+                maxCount={1}
+                fileList={fileList}
+                beforeUpload={beforeUpload}
+                onChange={handleFileChange}
+                showUploadList={{
+                  showRemoveIcon: false,
                 }}
+                className="upload"
               >
-                <input
-                  type="file"
-                  className="btn-text"
-                  onChange={handleFileChange}
-                  placeholder="Choose new photo"
-                />
-              </div>
+                <button style={{ border: 0, background: "none" }} type="button">
+                  <PlusOutlined />
+                  <div style={{ marginTop: 8 }}>Upload</div>
+                </button>
+              </Upload>
             </div>
 
             <div className="form__group right">
