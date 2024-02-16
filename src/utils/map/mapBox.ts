@@ -42,6 +42,7 @@ const mapLoad = (map: any, locations: any) => {
       new mapboxgl.Popup({
         offset: 30,
         closeOnClick: true,
+        focusAfterOpen: false, // 禁止文本框聚焦
       })
         .setLngLat(marker.coordinates)
         .setHTML(`<p> Day:${marker.day} ${marker.description}</p>`)
