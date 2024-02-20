@@ -1,7 +1,8 @@
 import { message as Message } from "antd";
+import { handleUpload } from "upload-image-github";
 import { Fetch } from "@utils/Fetch";
 import { logout } from "@utils/common";
-import { handleUpload, userPhotoPathSet } from "@utils/github-octokit";
+import { userPhotoPathSet } from "@utils/github-octokit";
 
 const sideNav = [
   {
@@ -116,14 +117,20 @@ const updatePassword = async (
  * @param dispatch
  */
 const uploadUserPhoto = async (file: any, dispatch: Function) => {
-  const path = userPhotoPathSet(file);
-  const { data } = (await handleUpload(file, path)) || {};
+  const AccessInfo = {
+    auth,
+    owner,
+    repo,
+  };
+  console.log(file?.name);
+  const path = userPhotoPathSet(file?.name);
+  const download_url = (await handleUpload(file, path, AccessInfo)) || "";
   // 数据存储
   dispatch({
     type: "my-account/saveData",
     payload: {
       key: "userPhoto",
-      value: data?.content?.download_url,
+      value: download_url,
     },
   });
 };

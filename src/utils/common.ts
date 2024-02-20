@@ -31,27 +31,4 @@ const logout = async () => {
     return false;
   }
 };
-/**
- * 将文件内容转换为 base64 编码
- * @param file
- * @returns
- */
-const readFileAsBase64 = (file: any) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = (event: any) => {
-      // 读取成功，将结果传递给 resolve
-      resolve(event?.target.result.split(",")[1]);
-    };
-
-    reader.onerror = (error) => {
-      // 读取失败，将错误传递给 reject
-      reject(error);
-    };
-
-    // 开始读取文件
-    reader.readAsDataURL(file);
-  });
-};
-export { isLogin, logout, readFileAsBase64 };
+export { isLogin, logout };
