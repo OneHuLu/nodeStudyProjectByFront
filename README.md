@@ -31,6 +31,7 @@ webpack.config.js [ModuleScopePlugin]
 - 页面跳转后滚动条位置被记忆问题 finished -问题原因： 实际上是因为 mapbox 的文本框会自动聚焦导致的
 - 工具目录路径别名配置 finished
 - 头像上传展示优化问题 finished
+- 从github上的图片请求会花费很长的时间
 
 ##### 学习视频
 
