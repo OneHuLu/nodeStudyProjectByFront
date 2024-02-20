@@ -122,7 +122,6 @@ const uploadUserPhoto = async (file: any, dispatch: Function) => {
     owner,
     repo,
   };
-  console.log(file?.name);
   const path = userPhotoPathSet(file?.name);
   const download_url = (await handleUpload(file, path, AccessInfo)) || "";
   // 数据存储
