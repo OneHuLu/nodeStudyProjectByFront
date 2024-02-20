@@ -2,22 +2,16 @@ import React, { useEffect, useState } from "react";
 import { getAllTours } from "./content";
 import ContentSkeleton from "page/skeleton/content-skeleton";
 import Tour from "./component/tour";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Content() {
   const dispatch = useDispatch();
-
-  const [loading, setLoading] = useState(false);
+  const { tourListLoading } = useSelector((state: any) => state.content);
 
   useEffect(() => {
-    setLoading(false);
-    getAllDate();
-    return () => setLoading(false);
+    getAllTours(dispatch);
+    return () => {};
   }, []);
 
-  const getAllDate = async () => {
-    await getAllTours(dispatch);
-    setLoading(true);
-  };
-  return <>{loading ? <Tour /> : <ContentSkeleton />}</>;
+  return <>{tourListLoading ? <Tour /> : <ContentSkeleton />}</>;
 }

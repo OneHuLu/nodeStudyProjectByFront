@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { Fetch } from "@utils/Fetch";
+import { setLoading, setTourList } from "./reducers/index-reducer";
 
 /**
  * 阻止原生事件
@@ -13,15 +14,11 @@ const labelPrevent = (event: any) => event.preventDefault();
  * @returns
  */
 const getAllTours = async (dispatch: Function) => {
+  dispatch(setLoading(false));
   const { status, data } = (await Fetch("/tours")) || {};
   if (status === 200) {
-    dispatch({
-      type: "content/saveData",
-      payload: {
-        key: "tourList",
-        value: data,
-      },
-    });
+    dispatch(setTourList(data));
+    dispatch(setLoading(true));
   }
 };
 

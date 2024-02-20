@@ -10,5 +10,5 @@ const counterSlice = createSlice({
   initialState: contentState,
   reducers: contentAction,
 });
-export const { saveData } = counterSlice.actions;
+export const { setLoading, setTourList } = counterSlice.actions;
 export default counterSlice.reducer;
