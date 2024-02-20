@@ -123,6 +123,13 @@ const uploadUserPhoto = async (file: any, dispatch: Function) => {
     repo,
   };
   const path = userPhotoPathSet(file?.name);
+  dispatch({
+    type: "my-account/saveData",
+    payload: {
+      key: "userPhotoLoding",
+      value: true,
+    },
+  });
   const download_url = (await handleUpload(file, path, AccessInfo)) || "";
   // 数据存储
   dispatch({
@@ -130,6 +137,13 @@ const uploadUserPhoto = async (file: any, dispatch: Function) => {
     payload: {
       key: "userPhoto",
       value: download_url,
+    },
+  });
+  dispatch({
+    type: "my-account/saveData",
+    payload: {
+      key: "userPhotoLoding",
+      value: false,
     },
   });
 };

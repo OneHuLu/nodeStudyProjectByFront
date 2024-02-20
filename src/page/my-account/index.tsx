@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Upload, UploadFile } from "antd";
+import { Button, Upload, UploadFile } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,9 @@ import "./index.less";
 export default function MyAaccount() {
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const { userPhoto } = useSelector((state: any) => state.myAccount);
+  const { userPhoto, userPhotoLoding } = useSelector(
+    (state: any) => state.myAccount
+  );
 
   // 获取user信息
   const getUserData = localStorage.getItem("user") || "";
@@ -166,8 +168,9 @@ export default function MyAaccount() {
             </div>
 
             <div className="form__group right">
-              <button
+              <Button
                 className="btn btn--small btn--green"
+                loading={userPhotoLoding}
                 onClick={async (e) => {
                   e.preventDefault();
                   await updateUserInfo(
@@ -179,7 +182,7 @@ export default function MyAaccount() {
                 }}
               >
                 Save settings
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -235,7 +238,7 @@ export default function MyAaccount() {
             </div>
 
             <div className="form__group right">
-              <button
+              <Button
                 className="btn btn--small btn--green"
                 onClick={async (e) => {
                   e.preventDefault();
@@ -248,7 +251,7 @@ export default function MyAaccount() {
                 }}
               >
                 Save password
-              </button>
+              </Button>
             </div>
           </form>
         </div>
