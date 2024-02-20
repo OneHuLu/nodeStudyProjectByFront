@@ -1,5 +1,6 @@
 import { message as Message } from "antd";
 import { Fetch } from "@utils/Fetch";
+import { setTourList } from "page/content/reducers/index-reducer";
 
 const handleKeyDown = async (
   event: any,
@@ -15,13 +16,7 @@ const handleKeyDown = async (
       },
     });
     if (status === 200) {
-      dispatch({
-        type: "content/saveData",
-        payload: {
-          key: "tourList",
-          value: data,
-        },
-      });
+      dispatch(setTourList(data));
     } else {
       Message.error(message);
     }
