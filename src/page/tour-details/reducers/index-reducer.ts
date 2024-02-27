@@ -11,5 +11,6 @@ const tourDetailsSlice = createSlice({
   reducers: tourDetailsAction,
 });
 
-// export const { saveData } = tourDetailsSlice.actions;
+export const { setTourDetailList, setTourDetailsLoading } =
+  tourDetailsSlice.actions;
 export default tourDetailsSlice.reducer;
