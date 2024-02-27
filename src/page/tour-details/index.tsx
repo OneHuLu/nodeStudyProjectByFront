@@ -5,7 +5,7 @@ import { getTourDetails } from "./tour-details";
 
 // component
 import TourDetailsComponents from "./components";
-import TourDetailsSkeleton from "page/skeleton/loading/loading";
+import TourDetailsSkeleton from "page/skeleton/tour-details-skeleton/tour-details-skeleton";
 
 export default function Tour() {
   // 获取url传参
