@@ -3,41 +3,40 @@ import { handleUpload } from "upload-image-github";
 import { Fetch } from "@utils/Fetch";
 import { logout } from "@utils/common";
 import { userPhotoPathSet } from "@utils/github-octokit";
+import { Nav } from "./type";
 
-const sideNav = [
+const sideNav: Nav[] = [
   {
     name: "Settings",
     icon: "settings",
+    component: "Setting",
   },
   {
-    name: "My bookings",
+    name: "My ChatGPT",
     icon: "briefcase",
-  },
-  {
-    name: "My reviews",
-    icon: "star",
-  },
-  {
-    name: "Billing",
-    icon: "credit-card",
+    component: "ChatGPT",
   },
 ];
-const adminNav = [
+const adminNav: Nav[] = [
+  {
+    name: "Settings",
+    icon: "settings",
+    component: "Setting",
+  },
   {
     name: "Manage tour",
     icon: "map",
+    component: "tour",
   },
   {
     name: "Manage users",
     icon: "users",
+    component: "users",
   },
   {
     name: "Manage reviews",
     icon: "star",
-  },
-  {
-    name: "Manage bookings",
-    icon: "briefcase",
+    component: "reviews",
   },
 ];
 
