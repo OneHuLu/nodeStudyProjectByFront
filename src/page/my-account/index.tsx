@@ -7,6 +7,7 @@ import "./index.less";
 // component
 import SideNav from "./component/side-nav";
 import Setting from "./component/setting";
+import ChatGPT from "page/chatGPT";
 
 export default function MyAaccount() {
   // 获取user信息
@@ -24,6 +25,7 @@ export default function MyAaccount() {
 
       <div className="user-view__content">
         {component === "Setting" && <Setting user={user} />}
+        {component === "ChatGPT" && <ChatGPT />}
       </div>
     </div>
   );

@@ -30,6 +30,11 @@ const router = [
     path: "/mine",
     element: MyAaccount,
   },
+  //chatGPT
+  {
+    path: "/chatGPT",
+    element: MyAaccount,
+  },
   // * 404页面
   {
     path: "*",
