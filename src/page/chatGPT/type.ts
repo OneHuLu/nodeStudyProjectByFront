@@ -19,5 +19,5 @@ interface T {
 
 type GeneratedArrayType = GeneratedType[];
 
-export type { T };
+export type { T, Message };
 export default GeneratedArrayType;

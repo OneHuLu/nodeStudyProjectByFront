@@ -1,27 +1,25 @@
 import { Fetch } from "@utils/Fetch";
-import GeneratedArrayType from "./type";
+import GeneratedArrayType, { Message } from "./type";
 
 const askGpt = async (
-  questions: string,
-  results: GeneratedArrayType,
-  setResults: Function,
-  setQuestions: Function
+  questions: Message,
+  messageList: GeneratedArrayType,
+  setMessageList: Function,
+  setLoading: Function
 ) => {
-  const getResults = await Fetch("/chatgpt/ask", {
+  setLoading(true);
+  const { data, status } = await Fetch("/chatgpt/ask", {
     method: "POST",
     body: {
-      content: questions,
+      content: questions.content,
     },
   });
 
-  if (!!getResults.data) {
-    setQuestions(null);
+  if (status === 200) {
+    // 将问题添加上去
+    data.questions = questions;
+    setMessageList([...messageList, data]);
+    setLoading(false);
   }
-  // 将问题添加上去
-  getResults.data.questions = {
-    role: "user",
-    content: questions,
-  };
-  setResults([...results, getResults]);
 };
 export { askGpt };
