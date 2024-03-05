@@ -11,11 +11,6 @@ const sideNav: Nav[] = [
     icon: "settings",
     component: "Setting",
   },
-  {
-    name: "My ChatGPT",
-    icon: "briefcase",
-    component: "ChatGPT",
-  },
 ];
 const adminNav: Nav[] = [
   {
