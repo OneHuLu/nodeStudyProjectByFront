@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { askGpt } from "./chat-gpt";
 import GptContent from "./components/gpt-content";
 import GeneratedArrayType, { Message } from "./type";
@@ -16,10 +16,16 @@ export default function ChatGPT() {
     role: "user",
     content: "",
   });
+  // 滚动到底部
+  const chatBoxRef = useRef<any>(null);
 
   // 消息队列
   const [messageList, setMessageList] = useState<GeneratedArrayType>([]); // 消息列表存放提问以及回答
   const [loading, setLoading] = useState<Boolean>(false);
+  // 滚动到底部
+  useEffect(() => {
+    chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+  }, [loading]);
 
   // 获取提出问题
   const changeQuestions = (e: { target: { value: string } }) =>
@@ -42,7 +48,7 @@ export default function ChatGPT() {
   };
 
   return (
-    <div className="gpt-chat">
+    <div className="gpt-chat" ref={chatBoxRef}>
       {/* 展示区域 */}
       <GptContent
         messageList={messageList}

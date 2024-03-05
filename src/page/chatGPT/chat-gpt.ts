@@ -1,6 +1,12 @@
 import { Fetch } from "@utils/Fetch";
 import GeneratedArrayType, { Message } from "./type";
 
+/**
+ * 提问接口
+ * @param questions 问题
+ * @param messageList 消息队列
+ * @param setMessageList 设置消息
+ */
 const askGpt = async (
   questions: Message,
   messageList: GeneratedArrayType,

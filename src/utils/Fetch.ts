@@ -22,7 +22,7 @@ const Fetch = async (
     ...header,
   };
   // 超时时间
-  const timeout = 10000;
+  const timeout = 120000;
   // 请求方法
   const method = params.method || "GET";
   //   区分Get以及其他请求
@@ -82,7 +82,6 @@ const isFetch = (
     const timeoutId = setTimeout(() => {
       reject(new Error("Request timeout"));
     }, timeout);
-
     let requestBody: any = {
       method,
       ...requireHead,
