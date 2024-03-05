@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import { Image } from "antd";
 import "./question-item.less";
 import UserPhoto from "../image/user-gpt.jpg";
@@ -21,7 +22,9 @@ export default function QuestionItem(props: any) {
       {/* 输出输入 */}
       <div className="question">
         <div className="text">{role == "user" ? "你" : "GPT"}</div>
-        <div className="quesetion-text">{content}</div>
+        <div className="quesetion-text">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
       </div>
     </div>
   );
