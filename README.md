@@ -32,6 +32,7 @@ webpack.config.js [ModuleScopePlugin]
 - 工具目录路径别名配置 finished
 - 头像上传展示优化问题 finished
 - 从github上的图片请求会花费很长的时间
+- GPT: 输出展示处理，一个一个字出现
 
 ##### 学习视频
 

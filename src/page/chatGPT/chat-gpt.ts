@@ -7,7 +7,6 @@ const askGpt = async (
   setMessageList: Function,
   setLoading: Function
 ) => {
-  setLoading(true);
   const { data, status } = await Fetch("/chatgpt/ask", {
     method: "POST",
     body: {
@@ -19,7 +18,6 @@ const askGpt = async (
     // 将问题添加上去
     data.questions = questions;
     setMessageList([...messageList, data]);
-    setLoading(false);
   }
 };
 export { askGpt };

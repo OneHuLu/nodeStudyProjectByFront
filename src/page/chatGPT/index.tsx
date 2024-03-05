@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { askGpt } from "./chat-gpt";
 import GptContent from "./components/gpt-content";
 import GeneratedArrayType, { Message } from "./type";
@@ -12,7 +12,12 @@ export default function ChatGPT() {
     role: "user",
     content: "",
   });
+  const prevValueRef = useRef<Message>({
+    role: "user",
+    content: "",
+  });
 
+  // 消息队列
   const [messageList, setMessageList] = useState<GeneratedArrayType>([]); // 消息列表存放提问以及回答
   const [loading, setLoading] = useState<Boolean>(false);
 
@@ -24,11 +29,16 @@ export default function ChatGPT() {
     });
   // 发起请求
   const sendAsk = async () => {
-    await askGpt(questions, messageList, setMessageList, setLoading);
-    setQuestions({
-      role: "user",
-      content: "",
+    setQuestions((prevalue) => {
+      prevValueRef.current = prevalue;
+      return {
+        role: "user",
+        content: "",
+      };
     });
+    setLoading(true);
+    await askGpt(prevValueRef.current, messageList, setMessageList, setLoading);
+    setLoading(false);
   };
 
   return (
@@ -36,14 +46,15 @@ export default function ChatGPT() {
       {/* 展示区域 */}
       <GptContent
         messageList={messageList}
-        questions={questions}
+        questions={prevValueRef.current}
         loading={loading}
       />
-      {/* 输入区域 TODO: 点击发送给后文本型该清空*/}
+      {/* 输入区域*/}
       <MessageEntry
         changeQuestions={changeQuestions}
         sendAsk={sendAsk}
         content={questions.content}
+        loading={loading}
       />
     </div>
   );

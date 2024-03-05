@@ -4,7 +4,7 @@ import { Button, Input } from "antd";
 import "./message-entry.less";
 
 export default function MessageEntry(props: any) {
-  const { changeQuestions, sendAsk, content } = props;
+  const { changeQuestions, sendAsk, content, loading } = props;
 
   return (
     <div className="message-entry">
@@ -18,7 +18,7 @@ export default function MessageEntry(props: any) {
         type="primary"
         size="large"
         className="button"
-        disabled={content ? false : true}
+        disabled={content && !loading ? false : true}
         onClick={sendAsk}
       >
         提交
