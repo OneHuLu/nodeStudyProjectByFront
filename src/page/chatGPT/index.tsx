@@ -37,7 +37,7 @@ export default function ChatGPT() {
       };
     });
     setLoading(true);
-    await askGpt(prevValueRef.current, messageList, setMessageList, setLoading);
+    await askGpt(prevValueRef.current, messageList, setMessageList);
     setLoading(false);
   };
 
