@@ -3,6 +3,7 @@ import Tour from "page/tour-details";
 import Login from "page/login";
 import NotFound from "@utils/error/NotFound";
 import MyAaccount from "page/my-account";
+import ChatGPT from "page/chatGPT";
 import SignUp from "page/sign-up";
 
 const router = [
@@ -33,7 +34,7 @@ const router = [
   //chatGPT
   {
     path: "/chatGPT",
-    element: MyAaccount,
+    element: ChatGPT,
   },
   // * 404页面
   {

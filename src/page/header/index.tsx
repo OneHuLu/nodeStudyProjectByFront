@@ -60,6 +60,10 @@ export default function Header() {
         <img src="/img/logo-white.png" alt="Natours logo" />
       </div>
       <nav className="nav nav--user">
+        <a className="nav__el" onClick={(event) => {
+          event.preventDefault();
+          navigate("/chatGPT");
+        }}>ChatGpt</a>
         {isLogin() ? (
           <>
             <a
