@@ -21,13 +21,15 @@ const Fetch = async (
     },
     ...header,
   };
-
+  // 超时时间
+  const timeout = 10000;
+  // 请求方法
   const method = params.method || "GET";
   //   区分Get以及其他请求
   const data =
     method === "GET"
-      ? await getFetch(initUrl, requireHead)
-      : await postFetch(initUrl, params, requireHead);
+      ? await getFetch(initUrl, requireHead, timeout)
+      : await postFetch(initUrl, params, requireHead, timeout);
   return data;
 };
 
@@ -38,42 +40,65 @@ const Fetch = async (
  * @param requireHead 需要的请求头
  * @returns
  */
-const postFetch = (initUrl: string, params: any, requireHead: {}) => {
-  const bodys = {
-    method: params.method,
-    body: JSON.stringify(params.body),
-    ...requireHead,
-  };
+const postFetch = (
+  initUrl: string,
+  params: any,
+  requireHead: {},
+  timeout: number
+) => {
   //数据请求
-  const data = fetch(initUrl, bodys)
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const data = isFetch(initUrl, params.method, params, requireHead, timeout)
+    .then((response: any) => response.json())
+    .then((data) => data)
+    .catch((error) => console.log(`Error: isFetch => ${error}`));
   return data;
 };
 
-// get 请求方法
-const getFetch = (initUrl: string, requireHead: {}) => {
+/**
+ *get 请求方法
+ * @param initUrl 请求地址
+ * @param requireHead 请求头
+ * @param timeout 超时时间
+ * @returns
+ */
+const getFetch = (initUrl: string, requireHead: {}, timeout: number) => {
   //数据请求
-  const data = fetch(initUrl, {
-    method: "GET",
-    ...requireHead,
-  })
-    .then((response) => {
-      const getData = response.json();
-      return getData;
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const data = isFetch(initUrl, "GET", {}, requireHead, timeout)
+    .then((response: any) => response.json())
+    .then((data) => data)
+    .catch((error) => console.log(`Error: isFetch => ${error}`));
   return data;
 };
 
+// 处理Get请求超时
+const isFetch = (
+  url: string,
+  method: string,
+  params: any,
+  requireHead: {},
+  timeout: number
+) => {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error("Request timeout"));
+    }, timeout);
+
+    let requestBody: any = {
+      method,
+      ...requireHead,
+    };
+    if (method !== "GET") {
+      requestBody.body = JSON.stringify(params.body);
+    }
+    fetch(url, requestBody)
+      .then((response) => {
+        clearTimeout(timeoutId);
+        resolve(response);
+      })
+      .catch((error) => {
+        clearTimeout(timeoutId);
+        reject(error);
+      });
+  });
+};
 export { Fetch };
