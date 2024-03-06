@@ -1,3 +1,23 @@
+##### 待处理事项
+
+- 路由封装提取 finished
+- fetch 封装完善 finished
+- 页面跳转后滚动条位置被记忆问题 finished -问题原因： 实际上是因为 mapbox 的文本框会自动聚焦导致的
+- 工具目录路径别名配置 finished
+- 头像上传展示优化问题 finished
+- 从github上的图片请求会花费很长的时间
+- GPT: 输出展示处理，一个一个字出现
+
+##### git 提交规范
+
+- feat: 新功能
+- fix: 修复 bug
+- chore: 构建过程或辅助工具的变动
+- docs: 文档的变动
+- style: 代码风格的变动（不影响代码的运行）
+- refactor: 代码重构
+- test: 添加或修改测试
+
 ##### 引用问题
 
 - react 中 webpack 做了以下处理，导致无法访问 src 外的资源
@@ -23,31 +43,3 @@ webpack.config.js [ModuleScopePlugin]
 ```
 未进行处理，保持访问的资源只能在src下
 ```
-
-##### 待处理事项
-
-- 路由封装提取 finished
-- fetch 封装完善 finished
-- 页面跳转后滚动条位置被记忆问题 finished -问题原因： 实际上是因为 mapbox 的文本框会自动聚焦导致的
-- 工具目录路径别名配置 finished
-- 头像上传展示优化问题 finished
-- 从github上的图片请求会花费很长的时间
-- GPT: 输出展示处理，一个一个字出现
-
-##### 学习视频
-
-`https://www.bilibili.com/video/BV1FY4y1H7ka/?p=16&spm_id_from=pageDriver&vd_source=20e9098517f100e0db4cafff0a9737d1`
-
-##### 示例代码
-
-`https://github.com/jonasschmedtmann/complete-node-bootcamp`
-
-##### git 提交规范
-
-- feat: 新功能
-- fix: 修复 bug
-- chore: 构建过程或辅助工具的变动
-- docs: 文档的变动
-- style: 代码风格的变动（不影响代码的运行）
-- refactor: 代码重构
-- test: 添加或修改测试
