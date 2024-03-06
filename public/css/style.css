@@ -286,6 +286,7 @@ body {
 }
 @media only screen and (max-width: 62.5em) {
   .header {
+    height: auto;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -953,10 +954,6 @@ body {
   margin-right: 1rem;
 }
 
-
-
-
-
 .card-container {
   max-width: 120rem;
   margin: 0 auto;
@@ -964,7 +961,17 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
 }
-
+@media only screen and (max-width:  78rem) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width:  52rem) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+  }
+}
 .card {
   border-radius: 3px;
   overflow: hidden;
@@ -1174,7 +1181,6 @@ body {
   align-items: center;
   font-size: 1.6rem;
 }
-
 
 .form__upload {
   width: 0.1px;
