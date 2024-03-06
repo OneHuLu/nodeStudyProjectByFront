@@ -752,6 +752,7 @@ body {
     grid-template-columns: 1fr;
     grid-row-gap: 1.25rem;
     justify-items: center;
+    overflow: hidden;
   }
 }
 .footer__logo {
@@ -836,6 +837,11 @@ body {
   -ms-flex-pack: end;
   justify-content: flex-end;
 }
+@media only screen and (max-width: 37.5em) {
+  .nav--user {
+    margin-top: 1rem;
+  }
+}
 .nav__el,
 .nav__el:link,
 .nav__el:visited {
@@ -856,6 +862,7 @@ body {
   border: none;
   cursor: pointer;
   font-family: inherit;
+  text-wrap: nowrap;
 }
 .nav__el:hover,
 .nav__el:active {
