@@ -18,6 +18,7 @@ const Fetch = async (
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      'Custom-User-Agent': baseUrl,
     },
     ...header,
   };
