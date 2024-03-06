@@ -1,22 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 // routes
 import Index from "./page/index";
-import Card from "./page/card";
-import Product from "./page/product";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Redux
+import { Provider } from "react-redux";
+import store from "./redux-root/store/store";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/card" element={<Card />} />
-          <Route path="/product" element={<Product />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <Router>
+          <Index />
+        </Router>
+      </Provider>
     </div>
   );
 }

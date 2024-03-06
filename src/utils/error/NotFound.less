@@ -1,0 +1,32 @@
+.notfound {
+  width: 100%;
+  height: calc(100vh - 29rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 3rem;
+  .navigate {
+    .go-home,
+    .back {
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .go-home,
+    .back {
+      display: inline;
+      background: linear-gradient(to right, red 50%, black 50%);
+      background-size: 200% 100%;
+      background-position: 100%;
+      color: transparent;
+      background-clip: text;
+      display: inline-block;
+      transition: background-position 0.5s ease;
+    }
+
+    .go-home:hover,
+    .back:hover {
+      background-position: 0%;
+    }
+  }
+}

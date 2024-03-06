@@ -1,0 +1,34 @@
+.user-question {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  .user-pohot {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    .img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .question {
+    width: calc(100% - 3rem);
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 18px;
+
+    .text {
+      font-weight: 600;
+    }
+    .quesetion-text {
+      width: 100%;
+      text-align: left;
+    }
+  }
+}

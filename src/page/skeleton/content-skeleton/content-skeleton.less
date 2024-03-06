@@ -1,0 +1,127 @@
+.main {
+  .skeleton-card__header,
+  .skeleton-card__details,
+  .skeleton-card__footer {
+    padding: 20px;
+  }
+  .skeleton-card__details h4 {
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .skeleton-card__picture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .skeleton-card__picture-img {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .skeleton-heading-tertirary {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .skeleton-text {
+    display: block;
+    width: 80%;
+    height: 16px;
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .skeleton-card__sub-heading,
+  .skeleton-card__text,
+  .skeleton-card__data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .skeleton-card__icon {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    margin-right: 10px;
+  }
+
+  .skeleton-card__footer-value,
+  .skeleton-card__footer-text {
+    display: inline-block;
+    width: 5rem;
+    height: 16px;
+    margin-bottom: 10px;
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .skeleton-card__btn {
+    display: inline-block;
+    width: 10.2rem;
+    height: 4.2rem;
+    background: linear-gradient(
+      to right,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  .skeleton-card__footer-value {
+    margin-right: 10px;
+  }
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}

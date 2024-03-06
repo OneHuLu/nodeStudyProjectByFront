@@ -331,6 +331,7 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
         ...{
           '@' : path.resolve(paths.appPath , 'src'),
+          '@utils': path.resolve(paths.appPath, 'src/utils'),
         }
       },
       plugins: [
