@@ -29,6 +29,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 // 自定义配置获取
 const customConfig = require('./config/config.json');
+// 自定义plugin
+const ReplaceContentPlugin = require('./plugin/replace-image-address')
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -800,6 +802,10 @@ module.exports = function (webpackEnv) {
             },
           },
         }),
+        new ReplaceContentPlugin({
+          // 指定要替换的路径
+          replacePath: 'https://raw.githubusercontent.com/OneHuLu/note-pic/master/natours/img'
+        })
     ].filter(Boolean),
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
